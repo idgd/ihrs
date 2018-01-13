@@ -8,3 +8,5 @@ window.setGeometry(50, 50, 500, 300)
 window.setWindowTitle("If you see this, it works!")
 
 window.show()
+
+input("PRESS ANY KEY TO END...")
