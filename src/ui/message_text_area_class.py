@@ -29,4 +29,3 @@ class MessagesTextArea(QWidget):
 
         #set the layout for this widget
         self.setLayout(self.main_layout)
-    
