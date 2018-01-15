@@ -20,17 +20,22 @@ class UiWindow(QMainWindow):
     def create_messages_layout(self):
         """this is the initial layout of the window - to display the message"""
 
+        #create widgets
         self.messageTextArea = MessagesTextArea("this is the message text", "this is the groupbox label")
         self.nextPushButton = QPushButton("Next")
+        self.previousPushButton = QPushButton("Previous")
 
-        # create layout to hold the widges
+        #create layout to hold the widges
         self.initial_layout = QVBoxLayout()
         self.initial_layout.addWidget(self.messageTextArea)
         self.initial_layout.addWidget(self.nextPushButton)
+        self.initial_layout.addWidget(self.previousPushButton)
 
+        #create widget to hold layout
         self.messageWidget = QWidget()
         self.messageWidget.setLayout(self.initial_layout)
 
+        #set the central widget
         self.setCentralWidget(self.messageWidget)
 
 def main():
