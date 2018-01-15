@@ -1,11 +1,13 @@
 """This code is a test"""
+# pylint: disable-msg=E0611
 
 import sys
-from PyQt5 import QtWidgets
 
-APP = QtWidgets.QApplication(sys.argv)
+from PyQt5.QtWidgets import QApplication, QWidget
 
-WINDOW = QtWidgets.QWidget()
+APP = QApplication(sys.argv)
+
+WINDOW = QWidget()
 WINDOW.setGeometry(50, 50, 500, 300)
 WINDOW.setWindowTitle("If you see this, it works!")
 
