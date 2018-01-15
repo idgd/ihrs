@@ -1,4 +1,4 @@
-"""database ui"""
+"""class_uiwindow"""
 # pylint: disable-msg=E0611
 
 import sys
