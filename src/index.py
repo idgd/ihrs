@@ -15,14 +15,16 @@ class UiWindow(QMainWindow):
     def __init__(self):
         super().__init__() #call super class constructor
         self.setWindowTitle("IHRS Database UI") #set window title
-        self.databaseConnection = DatabaseConnection()
-        self.create_messages_layout()
+        self.databaseConnection = DatabaseConnection() #get database connection
+        self.create_messages_layout() #sets the message window as the main window
 
     def create_messages_layout(self):
         """this is the initial layout of the window - to display the message"""
 
-        #create widgets
+        #retrun a cursor of database documents
         cursor = self.databaseConnection.return_list()
+
+        #create widgets
         self.messageTextArea = MessagesTextArea("messageText", "messageID")
         self.nextPushButton = QPushButton("Next")
         self.previousPushButton = QPushButton("Previous")
