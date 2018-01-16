@@ -15,4 +15,9 @@ def connect():
 def read(db, a):
     """docstring"""
 
-    return json.dumps(db.messages.find_one({"_id" : ObjectId(a)}))
+    return db.messages.find_one({"_id" : ObjectId(a)})
+
+def return_list(db):
+    """docstring"""
+
+    return db.messages.inserted_ids
