@@ -15,13 +15,17 @@ class UiWindow(QMainWindow):
     def __init__(self):
         super().__init__() #call super class constructor
         self.setWindowTitle("IHRS Database UI") #set window title
+        self.db = connect()
+        self.messageIDs = return_list(self.db)
+        print(self.messageIDs)
         self.create_messages_layout()
 
     def create_messages_layout(self):
         """this is the initial layout of the window - to display the message"""
 
         #create widgets
-        self.messageTextArea = MessagesTextArea("this is the message text", "this is the groupbox label")
+        message = read(self.db, self.messageIDs[0])
+        self.messageTextArea = MessagesTextArea(message, self.messageIDs[0])
         self.nextPushButton = QPushButton("Next")
         self.previousPushButton = QPushButton("Previous")
 

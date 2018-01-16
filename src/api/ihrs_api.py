@@ -1,6 +1,6 @@
 """ihrs api"""
+# pylint: disable-msg=C0103
 
-import json
 import pymongo
 
 from bson.objectid import ObjectId
@@ -9,7 +9,7 @@ def connect():
     """docstring"""
 
     client = pymongo.MongoClient()
-    db = client.local
+    db = client.ihrs
     return db
 
 def read(db, a):
@@ -21,7 +21,8 @@ def return_list(db):
     """docstring"""
 
     ret = []
-    for f in db.messages.inserted_ids:
+    idList = db.messages.inserted_ids()
+    for f in idList:
         ret.append(str(f))
 
     return ret
