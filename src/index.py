@@ -5,7 +5,7 @@ import sys
 
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget)
 
-from api.ihrs_api import (connect, read, return_list)
+from api.ihrs_api import (DatabaseConnection) # provides database methods
 from ui.message_text_area_class import MessagesTextArea  # provides the text area widget
 
 class UiWindow(QMainWindow):
@@ -15,17 +15,14 @@ class UiWindow(QMainWindow):
     def __init__(self):
         super().__init__() #call super class constructor
         self.setWindowTitle("IHRS Database UI") #set window title
-        self.db = connect()
-        self.messageIDs = return_list(self.db)
-        print(self.messageIDs)
+        self.databaseConnection = DatabaseConnection()
         self.create_messages_layout()
 
     def create_messages_layout(self):
         """this is the initial layout of the window - to display the message"""
 
         #create widgets
-        message = read(self.db, self.messageIDs[0])
-        self.messageTextArea = MessagesTextArea(message, self.messageIDs[0])
+        self.messageTextArea = MessagesTextArea("message", "messageID")
         self.nextPushButton = QPushButton("Next")
         self.previousPushButton = QPushButton("Previous")
 
