@@ -20,4 +20,8 @@ def read(db, a):
 def return_list(db):
     """docstring"""
 
-    return db.messages.inserted_ids
+    ret = []
+    for f in db.messages.inserted_ids:
+        ret.append(str(f))
+
+    return ret
