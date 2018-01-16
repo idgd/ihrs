@@ -5,24 +5,30 @@ import pymongo
 
 from bson.objectid import ObjectId
 
-def connect():
-    """docstring"""
+class DatabaseConnection():
+    """doc string"""
 
-    client = pymongo.MongoClient()
-    db = client.ihrs
-    return db
+    def __init__(self):
+        """doc string"""
 
-def read(db, a):
-    """docstring"""
+    def connect(self):
+        """docstring"""
 
-    return db.messages.find_one({"_id" : ObjectId(a)})
+        client = pymongo.MongoClient()
+        db = client.ihrs
+        return db
 
-def return_list(db):
-    """docstring"""
+    def read(self, db, a):
+        """docstring"""
 
-    ret = []
-    idList = db.messages.inserted_ids()
-    for f in idList:
-        ret.append(str(f))
+        return db.messages.find_one({"_id" : ObjectId(a)})
 
-    return ret
+    def return_list(self, db):
+        """docstring"""
+
+        ret = []
+        idList = db.messages.inserted_ids()
+        for f in idList:
+            ret.append(str(f))
+
+        return ret
