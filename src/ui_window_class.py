@@ -3,10 +3,10 @@
 
 import sys
 
-from PyQt5.QtWidgets import QMainWindow, QApplication, QVBoxLayout, QPushButton, QWidget
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget)
 
-from message_text_area_class import MessagesTextArea #provides the text area widget
-
+from api.ihrs_api import (connect, read, return_list)
+from ui.message_text_area_class import MessagesTextArea  # provides the text area widget
 
 class UiWindow(QMainWindow):
     """this class creates a main window"""
