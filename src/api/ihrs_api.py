@@ -1,7 +1,27 @@
 """ihrs api"""
 
-#TODO make database conenction
+import json
+import pymongo
 
-#TODO make method for reading records on database
+from bson.objectid import ObjectId
 
-#TODO possibly make a schema for messages
+def connect():
+    """docstring"""
+
+    client = pymongo.MongoClient()
+    db = client.local
+    return db
+
+def read(db, a):
+    """docstring"""
+
+    return db.messages.find_one({"_id" : ObjectId(a)})
+
+def return_list(db):
+    """docstring"""
+
+    ret = []
+    for f in db.messages.inserted_ids:
+        ret.append(str(f))
+
+    return ret
