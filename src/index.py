@@ -21,11 +21,13 @@ class UiWindow(QMainWindow):
     def create_messages_layout(self):
         """this is the initial layout of the window - to display the message"""
 
-        #retrun a cursor of database documents
-        cursor = self.databaseConnection.return_list()
+        #retrun a list of database documents
+        messages = self.databaseConnection.return_list()
+        initialMessageText = messages[0]["text"]
+        initialMessageId = str("Message ID: ") + str(messages[0]["_id"])
 
         #create widgets
-        self.messageTextArea = MessagesTextArea("messageText", "messageID")
+        self.messageTextArea = MessagesTextArea(initialMessageText, initialMessageId)
         self.nextPushButton = QPushButton("Next")
         self.previousPushButton = QPushButton("Previous")
 
