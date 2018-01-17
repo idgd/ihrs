@@ -1,27 +1,39 @@
 """ihrs api"""
+# pylint: disable-msg=C0103, C0301
 
-import json
 import pymongo
 
 from bson.objectid import ObjectId
 
-def connect():
-    """docstring"""
+DATABASE_NAME = "ihrs"
+DATABASE_COLLECTION_NAME = ["messages"]
 
-    client = pymongo.MongoClient()
-    db = client.local
-    return db
+class DatabaseConnection():
+    """this class stores the database and has some database methods"""
 
-def read(db, a):
-    """docstring"""
+    def __init__(self):
+        """initializes database and connects"""
+        self.db = self.connect()
 
-    return db.messages.find_one({"_id" : ObjectId(a)})
+    def connect(self):
+        """connects database to the DATABASE_NAME"""
 
-def return_list(db):
-    """docstring"""
+        client = pymongo.MongoClient()
+        databaseName = DATABASE_NAME
+        db = client.get_database(databaseName)
 
-    ret = []
-    for f in db.messages.inserted_ids:
-        ret.append(str(f))
+        return db
 
-    return ret
+    def read(self, messageID=""):
+        """takes in a message ID string and returns the document in the database"""
+
+        messageText = self.db.get_collection(DATABASE_COLLECTION_NAME[0]).find_one({"_id" : ObjectId(messageID)})
+
+        return messageText
+
+    def return_list(self):
+        """returns the records in the database records"""
+
+        listOfRecords = self.db.get_collection(DATABASE_COLLECTION_NAME[0]).find()
+
+        return listOfRecords
