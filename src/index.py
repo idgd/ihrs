@@ -15,6 +15,7 @@ class UiWindow(QMainWindow):
     def __init__(self):
         super().__init__() #call super class constructor
         self.setWindowTitle("IHRS Database UI") #set window title
+        self.setGeometry(500, 250, 500, 500)
         self.databaseConnection = DatabaseConnection() #get database connection
         self.messageIndex = 0
         self.create_messages_layout(self.messageIndex) #sets the message window as the main window
@@ -23,9 +24,9 @@ class UiWindow(QMainWindow):
         """this is the initial layout of the window - to display the message"""
 
         #retrun a list of database documents
-        messages = self.databaseConnection.return_list()
-        initialMessageText = messages[messageIndex]["text"]
-        initialMessageId = str("Message ID: ") + str(messages[messageIndex]["_id"])
+        self.messages = self.databaseConnection.return_list()
+        initialMessageText = self.messages[messageIndex]["text"]
+        initialMessageId = str("Message ID: ") + str(self.messages[messageIndex]["_id"])
 
         #create widgets
         self.messageTextArea = MessagesTextArea(initialMessageText, initialMessageId)
@@ -52,13 +53,15 @@ class UiWindow(QMainWindow):
     def next_message(self):
         """this method returns the next message in the database"""
 
-        self.messageIndex = self.messageIndex + 1
+        if self.messageIndex != self.messages.count()-1:
+            self.messageIndex = self.messageIndex + 1
         self.create_messages_layout(self.messageIndex)
 
     def previouse_message(self):
         """this method returns the previous message in the database"""
 
-        self.messageIndex = self.messageIndex - 1
+        if self.messageIndex != 0:
+            self.messageIndex = self.messageIndex - 1
         self.create_messages_layout(self.messageIndex)
 
 def main():
