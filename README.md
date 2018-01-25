@@ -14,5 +14,4 @@ We'll be standardizing on Python naming standards.
 * `UpperCamelCase` for classes
 * `CAPITALIZED_WITH_UNDERSCORES` for constants
 * `lowercase_separated_by_underscores` for other names (variables)
-
-Files will be named according to function.
+* `lowerCamelCase` for files
