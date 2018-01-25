@@ -14,3 +14,8 @@ We'll be standardizing on Python naming standards.
 * `UpperCamelCase` for classes
 * `CAPITALIZED_WITH_UNDERSCORES` for constants
 * `lowercase_separated_by_underscores` for other names (variables, files)
+
+# git flow
+* implement UI in create-basic-UI and API in create-basic-API
+* once you're done with a major change, merge into master
+* release every major stable merge
