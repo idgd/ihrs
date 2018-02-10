@@ -3,7 +3,7 @@
 
 import sys
 
-from PyQt5.QtWidgets import (QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget)
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QPushButton, QVBoxLayout, QHBoxLayout, QWidget, QListWidget, QLineEdit, QLabel)
 
 from api.ihrs_api import (DatabaseConnection) # provides database methods
 from ui.message_text_area_class import MessagesTextArea  # provides the text area widget
@@ -29,15 +29,51 @@ class UiWindow(QMainWindow):
         initialMessageId = str("Message ID: ") + str(self.messages[messageIndex]["_id"])
 
         #create widgets
-        self.messageTextArea = MessagesTextArea(initialMessageText, initialMessageId)
-        self.nextPushButton = QPushButton("Next")
-        self.previousPushButton = QPushButton("Previous")
+        #lists
+        self.taskList = QListWidget()
+        self.taskQueue = QListWidget()
+        self.taskLogger = QListWidget()
+        #buttons
+        self.addPushButton = QPushButton("Add")
+        self.removePushButton = QPushButton("Remove")
+        self.browsePushButton = QPushButton("Browse")
+        self.runPushButton = QPushButton("Run")
+        self.viewPushButton = QPushButton("View")
+        #other
+        self.browseLine = QLineEdit()
+        self.taskListLabel = QLabel("Task List")
+        self.taskQueueLabel = QLabel("Task Queue")
+        self.taskLoggerLabel = QLabel("Task Logger")
+        #layout
+        self.browseLayout = QHBoxLayout()
+        self.verticalButtons = QVBoxLayout()
+        self.taskListLayout = QVBoxLayout()
+        self.taskQueueLayout = QVBoxLayout()
+        self.taskLoggerLayout = QVBoxLayout()
 
-        #create layout to hold the widges
-        self.initial_layout = QVBoxLayout()
-        self.initial_layout.addWidget(self.messageTextArea)
-        self.initial_layout.addWidget(self.nextPushButton)
-        self.initial_layout.addWidget(self.previousPushButton)
+        #create layout to hold the widgets
+        self.initial_layout = QHBoxLayout()
+        self.initial_layout.addLayout(self.taskListLayout)
+        self.taskListLayout.addLayout(self.browseLayout)
+        self.browseLayout.addWidget(self.browseLine)
+        self.browseLayout.addWidget(self.browsePushButton)
+
+        self.taskListLayout.addWidget(self.taskList)
+
+        self.initial_layout.addLayout(self.verticalButtons)
+
+        self.verticalButtons.addWidget(self.addPushButton)
+        self.verticalButtons.addWidget(self.removePushButton)
+
+        self.taskQueueLayout.addWidget(self.taskQueueLabel)
+        self.taskQueueLayout.addWidget(self.taskQueue)
+        self.taskQueueLayout.addWidget(self.runPushButton)
+        self.initial_layout.addLayout(self.taskQueueLayout)
+
+        self.taskLoggerLayout.addWidget(self.taskLoggerLabel)
+        self.taskLoggerLayout.addWidget(self.taskLogger)
+        self.taskLoggerLayout.addWidget(self.viewPushButton)
+        self.initial_layout.addLayout(self.taskLoggerLayout)
 
         #create widget to hold layout
         self.messageWidget = QWidget()
@@ -47,8 +83,8 @@ class UiWindow(QMainWindow):
         self.setCentralWidget(self.messageWidget)
 
         #connections
-        self.nextPushButton.clicked.connect(self.next_message)
-        self.previousPushButton.clicked.connect(self.previouse_message)
+#        self.nextPushButton.clicked.connect(self.next_message)
+#        self.previousPushButton.clicked.connect(self.previouse_message)
 
     def next_message(self):
         """this method returns the next message in the database"""
