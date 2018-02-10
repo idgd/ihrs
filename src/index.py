@@ -16,71 +16,72 @@ class UiWindow(QMainWindow):
         super().__init__() #call super class constructor
         self.setWindowTitle("IHRS Database UI") #set window title
         self.setGeometry(500, 250, 500, 500)
-        self.databaseConnection = DatabaseConnection() #get database connection
-        self.messageIndex = 0
-        self.create_messages_layout(self.messageIndex) #sets the message window as the main window
+        self.database_connection = DatabaseConnection() #get database connection
+        self.message_index = 0
+        self.create_messages_layout(self.message_index) #sets the message window as the main window
 
-    def create_messages_layout(self, messageIndex=0):
+    def create_messages_layout(self, message_index=0):
         """this is the initial layout of the window - to display the message"""
 
         #retrun a list of database documents
-        self.messages = self.databaseConnection.return_list()
-        initialMessageText = self.messages[messageIndex]["text"]
-        initialMessageId = str("Message ID: ") + str(self.messages[messageIndex]["_id"])
+        self.messages = self.database_connection.return_list()
+        initial_message_text = self.messages[message_index]["text"]
+        initial_message_id = str("Message ID: ") + str(self.messages[message_index]["_id"])
 
         #create widgets
         #lists
-        self.taskList = QListWidget()
-        self.taskQueue = QListWidget()
-        self.taskLogger = QListWidget()
+        self.task_list = QListWidget()
+        self.task_queue = QListWidget()
+        self.task_logger = QListWidget()
         #buttons
-        self.addPushButton = QPushButton("Add")
-        self.removePushButton = QPushButton("Remove")
-        self.browsePushButton = QPushButton("Browse")
-        self.runPushButton = QPushButton("Run")
-        self.viewPushButton = QPushButton("View")
+        self.add_push_button = QPushButton("Add")
+        self.remove_push_button = QPushButton("Remove")
+        self.browse_push_button = QPushButton("Browse")
+        self.run_push_button = QPushButton("Run")
+        self.view_push_button = QPushButton("View")
         #other
-        self.browseLine = QLineEdit()
-        self.taskListLabel = QLabel("Task List")
-        self.taskQueueLabel = QLabel("Task Queue")
-        self.taskLoggerLabel = QLabel("Task Logger")
+        self.browse_line = QLineEdit()
+        self.task_list_label = QLabel("Task List")
+        self.task_queue_label = QLabel("Task Queue")
+        self.task_loggerLabel = QLabel("Task Logger")
         #layout
-        self.browseLayout = QHBoxLayout()
-        self.verticalButtons = QVBoxLayout()
-        self.taskListLayout = QVBoxLayout()
-        self.taskQueueLayout = QVBoxLayout()
-        self.taskLoggerLayout = QVBoxLayout()
+        self.browse_layout = QHBoxLayout()
+        self.add_remove_layout = QVBoxLayout()
+        self.task_list_layout = QVBoxLayout()
+        self.task_queue_layout = QVBoxLayout()
+        self.task_logger_layout = QVBoxLayout()
 
         #create layout to hold the widgets
         self.initial_layout = QHBoxLayout()
-        self.initial_layout.addLayout(self.taskListLayout)
-        self.taskListLayout.addLayout(self.browseLayout)
-        self.browseLayout.addWidget(self.browseLine)
-        self.browseLayout.addWidget(self.browsePushButton)
 
-        self.taskListLayout.addWidget(self.taskList)
+        self.browse_layout.addWidget(self.browse_line)
+        self.browse_layout.addWidget(self.browse_push_button)
 
-        self.initial_layout.addLayout(self.verticalButtons)
+        self.task_list_layout.addLayout(self.browse_layout)
+        self.task_list_layout.addWidget(self.task_list)
 
-        self.verticalButtons.addWidget(self.addPushButton)
-        self.verticalButtons.addWidget(self.removePushButton)
+        self.add_remove_layout.addWidget(self.add_push_button)
+        self.add_remove_layout.addWidget(self.remove_push_button)
 
-        self.taskQueueLayout.addWidget(self.taskQueueLabel)
-        self.taskQueueLayout.addWidget(self.taskQueue)
-        self.taskQueueLayout.addWidget(self.runPushButton)
-        self.initial_layout.addLayout(self.taskQueueLayout)
+        self.task_queue_layout.addWidget(self.task_queue_label)
+        self.task_queue_layout.addWidget(self.task_queue)
+        self.task_queue_layout.addWidget(self.run_push_button)
 
-        self.taskLoggerLayout.addWidget(self.taskLoggerLabel)
-        self.taskLoggerLayout.addWidget(self.taskLogger)
-        self.taskLoggerLayout.addWidget(self.viewPushButton)
-        self.initial_layout.addLayout(self.taskLoggerLayout)
+        self.task_logger_layout.addWidget(self.task_loggerLabel)
+        self.task_logger_layout.addWidget(self.task_logger)
+        self.task_logger_layout.addWidget(self.view_push_button)
+
+        self.initial_layout.addLayout(self.task_list_layout)
+        self.initial_layout.addLayout(self.add_remove_layout)
+        self.initial_layout.addLayout(self.task_queue_layout)
+        self.initial_layout.addLayout(self.task_logger_layout)
 
         #create widget to hold layout
-        self.messageWidget = QWidget()
-        self.messageWidget.setLayout(self.initial_layout)
+        self.message_widget = QWidget()
+        self.message_widget.setLayout(self.initial_layout)
 
         #set the central widget
-        self.setCentralWidget(self.messageWidget)
+        self.setCentralWidget(self.message_widget)
 
         #connections
 #        self.nextPushButton.clicked.connect(self.next_message)
@@ -89,16 +90,16 @@ class UiWindow(QMainWindow):
     def next_message(self):
         """this method returns the next message in the database"""
 
-        if self.messageIndex != self.messages.count()-1:
-            self.messageIndex = self.messageIndex + 1
-        self.create_messages_layout(self.messageIndex)
+        if self.message_index != self.messages.count()-1:
+            self.message_index = self.message_index + 1
+        self.create_messages_layout(self.message_index)
 
     def previouse_message(self):
         """this method returns the previous message in the database"""
 
-        if self.messageIndex != 0:
-            self.messageIndex = self.messageIndex - 1
-        self.create_messages_layout(self.messageIndex)
+        if self.message_index != 0:
+            self.message_index = self.message_index - 1
+        self.create_messages_layout(self.message_index)
 
 def main():
     """this is the main function"""
