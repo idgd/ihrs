@@ -22,6 +22,7 @@ class DatabaseConnection():
         """connects database to the DATABASE_NAME"""
 
         client = pymongo.MongoClient()
+        # Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=True), u'test_database')
         database_name = DATABASE_NAME
         db = client.get_database(database_name)
 
