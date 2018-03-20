@@ -33,6 +33,11 @@ class UiWindow(QMainWindow):
         self.task_list = QListWidget()
         self.task_queue = QListWidget()
         self.task_logger = QListWidget()
+        self.task_list.addItem("Average Noise Floor")
+        self.task_list.addItem("Maximum Noise Floor")
+        self.task_list.addItem("Minimum Noise Floor")
+        self.task_list.addItem("Average Messages Per Second")
+        self.task_list.addItem("Count Redundant Messages")
         #buttons
         self.add_push_button = QPushButton("Add")
         self.remove_push_button = QPushButton("Remove")
