@@ -1,4 +1,5 @@
 def calculateMinimumNoiseFloor:
+    ''' documentations '''
     
     minimum = 1
 

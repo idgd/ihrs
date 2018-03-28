@@ -1,4 +1,5 @@
 def calculateMaximumNoiseFloor:
+    ''' documentations '''
     
     maximum = 1
 
