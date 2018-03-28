@@ -1,6 +1,3 @@
-"""class_uiwindow"""
-# pylint: disable-msg=E0611, C0103
-
 import sys
 
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QPushButton, QVBoxLayout, QHBoxLayout, QWidget, QListWidget, QLineEdit, QLabel)

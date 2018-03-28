@@ -1,6 +1,3 @@
-"""text area widget class"""
-# pylint: disable-msg=E0611, C0103
-
 from PyQt5.QtWidgets import QWidget, QTextEdit, QVBoxLayout, QGroupBox
 
 class MessagesTextArea(QWidget):

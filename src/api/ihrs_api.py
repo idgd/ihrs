@@ -1,6 +1,3 @@
-"""ihrs api"""
-# pylint: disable-msg=C0103, C0301
-
 import pymongo
 import json
 import inovonics
