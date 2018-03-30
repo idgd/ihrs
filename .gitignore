@@ -6,3 +6,6 @@
 /src/ui/__pycache__
 /src/api/__pycache__
 /src/inovonics
+/src/api/__pycache__
+src/api/.DS_Store
+.DS_Store

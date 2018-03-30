@@ -41,6 +41,12 @@ class UiWindow(QMainWindow):
         self.browse_push_button = QPushButton("Browse")
         self.run_push_button = QPushButton("Run")
         self.view_push_button = QPushButton("View")
+        #Connect methods to buttons
+        self.add_push_button.clicked.connect(self.add)
+        self.remove_push_button.clicked.connect(self.remove)
+        self.browse_push_button.clicked.connect(self.browse)
+        self.run_push_button.clicked.connect(self.run)
+        self.view_push_button.clicked.connect(self.view)
         #other
         self.browse_line = QLineEdit()
         self.task_list_label = QLabel("Task List")
@@ -88,6 +94,21 @@ class UiWindow(QMainWindow):
         #connections
 #        self.nextPushButton.clicked.connect(self.next_message)
 #        self.previousPushButton.clicked.connect(self.previouse_message)
+
+    def add(self):
+        '''t'''
+
+    def remove(self):
+        '''t'''
+
+    def browse(self):
+        '''t'''
+
+    def run(self):
+        '''t'''
+
+    def view(self):
+        '''t'''
 
     def next_message(self):
         """this method returns the next message in the database"""
