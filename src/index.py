@@ -100,10 +100,31 @@ class UiWindow(QMainWindow):
 
     def add(self):
         '''t'''
+        listItems=self.task_list.selectedItems()
+        items = []
+        if not listItems:
+            for index in range(self.task_list.count()):
+                items.append(self.task_list.item(index))
+            for i in range(len(items)):
+                self.task_queue.addItem(items[i].text())
+        else:
+            for item in self.task_list.selectedItems():
+                self.task_queue.addItem(item.text())
+            
 
     def remove(self):
         '''t'''
-
+        listItems=self.task_queue.selectedItems()
+        items = []
+        if not listItems:
+            for index in range(self.task_queue.count()):
+                items.append(self.task_queue.item(index))
+            for i in range(len(items)):
+                self.task_queue.takeItem(self.task_queue.row(items[i]))
+        else:
+            for item in listItems:
+                self.task_queue.takeItem(self.task_queue.row(item))
+        
     def browse(self):
         '''t'''
 
