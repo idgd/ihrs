@@ -4,7 +4,7 @@ class MessagesTextArea(QWidget):
     """this class creates a text area"""
 
     #constructor
-    def __init__(self, message="", groupBoxLabel="test"):
+    def __init__(self, message="", groupBoxLabel=""):
         super().__init__() #call the super class constructor
 
         #create widgets
