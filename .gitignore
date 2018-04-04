@@ -3,7 +3,7 @@
 # Paths
 /data
 /dev
+/src/inovonics
 /src/ui/__pycache__
 /src/api/__pycache__
-src/api/.DS_Store
 .DS_Store
