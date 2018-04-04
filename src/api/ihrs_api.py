@@ -1,6 +1,3 @@
-"""ihrs api"""
-# pylint: disable-msg=C0103, C0301
-
 import pymongo
 import json
 import inovonics
@@ -22,7 +19,6 @@ class DatabaseConnection():
         """connects database to the DATABASE_NAME"""
 
         client = pymongo.MongoClient('138.86.104.164',2246)
-        # Database(MongoClient(host=['138.86.104.164:2246'], document_class=dict, tz_aware=False, connect=True), u'test_database')
         database_name = DATABASE_NAME
         db = client.get_database(database_name)
 
