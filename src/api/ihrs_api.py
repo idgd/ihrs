@@ -18,7 +18,7 @@ class DatabaseConnection():
     def connect(self):
         """connects database to the DATABASE_NAME"""
 
-        client = pymongo.MongoClient('138.86.104.164',2246)
+        client = pymongo.MongoClient('138.86.104.164',27017)
         database_name = DATABASE_NAME
         db = client.get_database(database_name)
 
