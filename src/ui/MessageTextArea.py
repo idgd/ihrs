@@ -1,11 +1,9 @@
 from PyQt5.QtWidgets import QWidget, QTextEdit, QVBoxLayout, QGroupBox
 
 class MessagesTextArea(QWidget):
-    """this class creates a text area"""
 
-    #constructor
     def __init__(self, message="", groupBoxLabel=""):
-        super().__init__() #call the super class constructor
+        super().__init__()
 
         #create widgets
         self.groupBoxWidget = QGroupBox(groupBoxLabel)

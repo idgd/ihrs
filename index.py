@@ -1,25 +1,20 @@
 import sys
 
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QPushButton, QVBoxLayout, QHBoxLayout, QWidget, QListWidget, QLineEdit, QLabel)
-
-from api.ihrs_api import (DatabaseConnection) # provides database methods
-from ui.message_text_area_class import MessagesTextArea  # provides the text area widget
+from src.api.DatabaseConnection import DatabaseConnection
+from src.ui.MessageTextArea import MessagesTextArea
 
 class UiWindow(QMainWindow):
-    """this class creates a main window"""
 
-    #constructor
     def __init__(self):
-        super().__init__() #call super class constructor
-        self.setWindowTitle("IHRS Database UI") #set window title
+        super().__init__()
+        self.setWindowTitle("IHRS Database UI")
         self.setGeometry(448, 156, 1024, 768)
-        self.database_connection = DatabaseConnection() #get database connection
+        self.database_connection = DatabaseConnection()
         self.message_index = 0
-        self.create_messages_layout(self.message_index) #sets the message window as the main window
+        self.create_messages_layout(self.message_index)
 
     def create_messages_layout(self, message_index=0):
-        """this is the initial layout of the window - to display the message"""
-
         #retrun a list of database documents
         self.messages = self.database_connection.return_list()
 
@@ -59,24 +54,18 @@ class UiWindow(QMainWindow):
 
         #create layout to hold the widgets
         self.initial_layout = QHBoxLayout()
-
         self.browse_layout.addWidget(self.browse_line)
         self.browse_layout.addWidget(self.browse_push_button)
-
         self.task_list_layout.addLayout(self.browse_layout)
         self.task_list_layout.addWidget(self.task_list)
-
         self.add_remove_layout.addWidget(self.add_push_button)
         self.add_remove_layout.addWidget(self.remove_push_button)
-
         self.task_queue_layout.addWidget(self.task_queue_label)
         self.task_queue_layout.addWidget(self.task_queue)
         self.task_queue_layout.addWidget(self.run_push_button)
-
         self.task_logger_layout.addWidget(self.task_loggerLabel)
         self.task_logger_layout.addWidget(self.task_logger)
         self.task_logger_layout.addWidget(self.view_push_button)
-
         self.initial_layout.addLayout(self.task_list_layout)
         self.initial_layout.addLayout(self.add_remove_layout)
         self.initial_layout.addLayout(self.task_queue_layout)
@@ -90,7 +79,6 @@ class UiWindow(QMainWindow):
         self.setCentralWidget(self.message_widget)
 
     def add(self):
-        '''t'''
         listItems=self.task_list.selectedItems()
         items = []
         if not listItems:
@@ -104,7 +92,6 @@ class UiWindow(QMainWindow):
             
 
     def remove(self):
-        '''t'''
         listItems=self.task_queue.selectedItems()
         items = []
         if not listItems:
@@ -126,13 +113,11 @@ class UiWindow(QMainWindow):
         '''t'''
 
 def main():
-    """this is the main function"""
-
-    ihrs_ui = QApplication(sys.argv) #create new application
+    app = QApplication(sys.argv) #create new application
     ui_window = UiWindow() #create new instance of main window
     ui_window.show() #make instance visable
     ui_window.raise_() #raise instance to top of window stack
-    ihrs_ui.exec_() #monitor application for events
+    app.exec_() #monitor application for events
 
 if __name__ == "__main__":
     main()
