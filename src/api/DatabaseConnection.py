@@ -1,6 +1,6 @@
 import pymongo
 import json
-from src.inovonics.echostream.messages.serial import decodeSerialMessage
+from inovonics.echostream.messages.serial import decodeSerialMessage
 from bson.objectid import ObjectId
 
 DATABASE_NAME = "ihrs"
