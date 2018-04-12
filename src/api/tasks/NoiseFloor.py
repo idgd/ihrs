@@ -7,11 +7,10 @@ class NoiseFloor:
     def CalculateAverageNoiseFloor(messages):
         average = None
         listOfNoiseFloors = []
-        
-        for index in range(len(messages)):
-            level = messages[index].signal.level
-            margin = messages[index].signal.margin
-            noiseFloor = CalculateNoiseFloor(level, margin)
+        for f in messages:
+            level = f.signal.level
+            margin = f.signal.margin
+            noiseFloor = CalculateNoiseFloor(level,margin)
             listOfNoiseFloors.append(noiseFloor)
 
         average = sum(listOfNoiseFloors) / float(len(listOfNoiseFloors))
@@ -25,7 +24,7 @@ class NoiseFloor:
             margin = messages[index].signal.margin
             noiseFloor = CalculateNoiseFloor(level, margin)
 
-            if(minimum === None or noiseFloor < minimum):
+            if(minimum == None or noiseFloor < minimum):
                 minimum = noiseFloor
 
         return minimum
@@ -38,7 +37,7 @@ class NoiseFloor:
             margin = messages[index].signal.margin
             noiseFloor = CalculateNoiseFloor(level, margin)
 
-            if(minimum === None or noiseFloor > maximum):
+            if(minimum == None or noiseFloor > maximum):
                 maximum = noiseFloor
 
         return maximum

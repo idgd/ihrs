@@ -1,8 +1,9 @@
 import sys
 
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QPushButton, QVBoxLayout, QHBoxLayout, QWidget, QListWidget, QLineEdit, QLabel)
-from src.api.DatabaseConnection import DatabaseConnection
-from src.ui.MessageTextArea import MessagesTextArea
+from api.DatabaseConnection import DatabaseConnection
+from api.tasks.NoiseFloor import NoiseFloor
+from ui.MessageTextArea import MessagesTextArea
 
 class UiWindow(QMainWindow):
 
@@ -28,6 +29,7 @@ class UiWindow(QMainWindow):
         self.task_list.addItem("Minimum Noise Floor")
         self.task_list.addItem("Average Messages Per Second")
         self.task_list.addItem("Count Redundant Messages")
+
         #buttons
         self.add_push_button = QPushButton("Add")
         self.remove_push_button = QPushButton("Remove")
@@ -108,6 +110,18 @@ class UiWindow(QMainWindow):
 
     def run(self):
         '''t'''
+        for i in range(self.task_queue.count()):
+            task = self.task_queue.item(i).text()
+            if task == "Average Noise Floor":
+                print(NoiseFloor.CalculateAverageNoiseFloor(self.messages))
+            elif task == "Maximum Noise Floor":
+                print(NoiseFloor.CalculateMaximumNoiseFloor(self.messages))
+            elif task == "Minimum Noise Floor":
+                print(NoiseFloor.CalculateMinimumNoiseFloor(self.messages))
+            elif task == "Average Messages Per Second":
+                break
+            else:
+                break
 
     def view(self):
         '''t'''
