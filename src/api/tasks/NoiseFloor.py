@@ -8,10 +8,12 @@ class NoiseFloor:
         average = None
         listOfNoiseFloors = []
         for f in messages:
-            level = f.signal.level
-            margin = f.signal.margin
-            noiseFloor = CalculateNoiseFloor(level,margin)
-            listOfNoiseFloors.append(noiseFloor)
+            if "signal" in f:
+                level = f["signal"]["level"]
+                margin = f["signal"]["margin"]
+#                noiseFloor = self.CalculateNoiseFloor(level,margin)
+                noiseFloor = abs(104 - level - margin)
+                listOfNoiseFloors.append(noiseFloor)
 
         average = sum(listOfNoiseFloors) / float(len(listOfNoiseFloors))
         return average
