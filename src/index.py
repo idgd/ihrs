@@ -110,14 +110,17 @@ class UiWindow(QMainWindow):
 
     def run(self):
         '''t'''
+        msgs = [f for f in self.messages]
+        nf = NoiseFloor()
+        print("started")
         for i in range(self.task_queue.count()):
             task = self.task_queue.item(i).text()
             if task == "Average Noise Floor":
-                print(NoiseFloor.CalculateAverageNoiseFloor(self.messages))
+                print(nf.CalculateAverageNoiseFloor(msgs))
             elif task == "Maximum Noise Floor":
-                print(NoiseFloor.CalculateMaximumNoiseFloor(self.messages))
+                print(nf.CalculateMaximumNoiseFloor(msgs))
             elif task == "Minimum Noise Floor":
-                print(NoiseFloor.CalculateMinimumNoiseFloor(self.messages))
+                print(nf.CalculateMinimumNoiseFloor(msgs))
             elif task == "Average Messages Per Second":
                 break
             else:
