@@ -3,6 +3,7 @@ import sys
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QPushButton, QVBoxLayout, QHBoxLayout, QWidget, QListWidget, QLineEdit, QLabel)
 from api.DatabaseConnection import DatabaseConnection
 from api.tasks.NoiseFloor import NoiseFloor
+from api.tasks.MsgCount import MsgCount
 from ui.MessageTextArea import MessagesTextArea
 
 class UiWindow(QMainWindow):
@@ -112,6 +113,7 @@ class UiWindow(QMainWindow):
         '''t'''
         msgs = [f for f in self.messages]
         nf = NoiseFloor()
+        mg = MsgCount()
         out = [f for f in range(self.task_queue.count())]
         print("started")
         for i in range(self.task_queue.count()):
@@ -123,7 +125,7 @@ class UiWindow(QMainWindow):
             elif task == "Minimum Noise Floor":
                 out[i] = nf.CalculateMinimumNoiseFloor(msgs)
             elif task == "Average Messages Per Second":
-                break
+                out[i] = mg.CalculateAveragePerSec(msgs)
             else:
                 break
         for f in out:
