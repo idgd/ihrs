@@ -35,12 +35,11 @@ class UiWindow(QMainWindow):
         self.add_push_button = QPushButton("Add")
         self.remove_push_button = QPushButton("Remove")
         self.run_push_button = QPushButton("Run")
-        self.view_push_button = QPushButton("View")
+
         #Connect methods to buttons
         self.add_push_button.clicked.connect(self.add)
         self.remove_push_button.clicked.connect(self.remove)
         self.run_push_button.clicked.connect(self.run)
-        self.view_push_button.clicked.connect(self.view)
         #other
         self.task_list_label = QLabel("Task List")
         self.task_queue_label = QLabel("Task Queue")
@@ -63,7 +62,6 @@ class UiWindow(QMainWindow):
         self.task_queue_layout.addWidget(self.run_push_button)
         self.task_logger_layout.addWidget(self.task_loggerLabel)
         self.task_logger_layout.addWidget(self.task_logger)
-        self.task_logger_layout.addWidget(self.view_push_button)
         self.initial_layout.addLayout(self.task_list_layout)
         self.initial_layout.addLayout(self.add_remove_layout)
         self.initial_layout.addLayout(self.task_queue_layout)
@@ -122,9 +120,6 @@ class UiWindow(QMainWindow):
                 out[i] = mg.CalculateRedundantCount(msgs)
         for f in out:
             self.task_logger.addItem(str(f))
-
-    def view(self):
-        '''t'''
 
 def main():
     app = QApplication(sys.argv) #create new application
