@@ -88,6 +88,7 @@ class UiWindow(QMainWindow):
             
 
     def remove(self):
+        self.task_logger.clear()
         listItems=self.task_queue.selectedItems()
         items = []
         if not listItems:
@@ -100,12 +101,12 @@ class UiWindow(QMainWindow):
                 self.task_queue.takeItem(self.task_queue.row(item))
 
     def run(self):
-        '''t'''
+        self.task_logger.clear()
+        self.messages = self.database_connection.return_list()
         msgs = [f for f in self.messages]
         nf = NoiseFloor()
         mg = MsgCount()
         out = [f for f in range(self.task_queue.count())]
-        print("started")
         for i in range(self.task_queue.count()):
             task = self.task_queue.item(i).text()
             if task == "Average Noise Floor":
