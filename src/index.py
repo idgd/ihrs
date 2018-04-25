@@ -34,22 +34,19 @@ class UiWindow(QMainWindow):
         #buttons
         self.add_push_button = QPushButton("Add")
         self.remove_push_button = QPushButton("Remove")
-        self.browse_push_button = QPushButton("Browse")
         self.run_push_button = QPushButton("Run")
         self.view_push_button = QPushButton("View")
         #Connect methods to buttons
         self.add_push_button.clicked.connect(self.add)
         self.remove_push_button.clicked.connect(self.remove)
-        self.browse_push_button.clicked.connect(self.browse)
         self.run_push_button.clicked.connect(self.run)
         self.view_push_button.clicked.connect(self.view)
         #other
-        self.browse_line = QLineEdit()
         self.task_list_label = QLabel("Task List")
         self.task_queue_label = QLabel("Task Queue")
         self.task_loggerLabel = QLabel("Task Logger")
         #layout
-        self.browse_layout = QHBoxLayout()
+
         self.add_remove_layout = QVBoxLayout()
         self.task_list_layout = QVBoxLayout()
         self.task_queue_layout = QVBoxLayout()
@@ -57,9 +54,7 @@ class UiWindow(QMainWindow):
 
         #create layout to hold the widgets
         self.initial_layout = QHBoxLayout()
-        self.browse_layout.addWidget(self.browse_line)
-        self.browse_layout.addWidget(self.browse_push_button)
-        self.task_list_layout.addLayout(self.browse_layout)
+        self.task_list_layout.addWidget(self.task_list_label)
         self.task_list_layout.addWidget(self.task_list)
         self.add_remove_layout.addWidget(self.add_push_button)
         self.add_remove_layout.addWidget(self.remove_push_button)
@@ -105,9 +100,6 @@ class UiWindow(QMainWindow):
         else:
             for item in listItems:
                 self.task_queue.takeItem(self.task_queue.row(item))
-        
-    def browse(self):
-        '''t'''
 
     def run(self):
         '''t'''
