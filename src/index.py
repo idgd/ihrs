@@ -127,7 +127,7 @@ class UiWindow(QMainWindow):
             elif task == "Average Messages Per Second":
                 out[i] = mg.CalculateAveragePerSec(msgs)
             else:
-                break
+                out[i] = mg.CalculateRedundantCount(msgs)
         for f in out:
             self.task_logger.addItem(str(f))
 
