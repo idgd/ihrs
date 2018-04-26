@@ -4,7 +4,6 @@ from PyQt5.QtWidgets import (QApplication, QMainWindow, QPushButton, QVBoxLayout
 from api.DatabaseConnection import DatabaseConnection
 from api.tasks.NoiseFloor import NoiseFloor
 from api.tasks.MsgCount import MsgCount
-from ui.MessageTextArea import MessagesTextArea
 
 class UiWindow(QMainWindow):
 
